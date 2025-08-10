@@ -27,4 +27,4 @@ export 'src/modules/settings/directus_settings.dart';
 export 'src/modules/users/directus_user.dart';
 export 'src/singleton.dart';
 export 'src/modules/auth/auth_handler.dart';
-export 'src/modules/auth//auth_response.dart';
+export 'src/modules/auth/auth_response.dart';
