@@ -8,7 +8,7 @@ part of 'directus_preset.dart';
 
 DirectusPreset _$DirectusPresetFromJson(Map<String, dynamic> json) =>
     DirectusPreset(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       bookmark: json['bookmark'] as String?,
       user: json['user'],
       role: json['role'],
@@ -22,24 +22,16 @@ DirectusPreset _$DirectusPresetFromJson(Map<String, dynamic> json) =>
       layoutOptions: json['layout_options'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$DirectusPresetToJson(DirectusPreset instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  writeNotNull('bookmark', instance.bookmark);
-  writeNotNull('user', instance.user);
-  writeNotNull('role', instance.role);
-  writeNotNull('collection', instance.collection);
-  writeNotNull('search', instance.search);
-  writeNotNull('filters', instance.filters);
-  writeNotNull('layout', instance.layout);
-  writeNotNull('layout_query', instance.layoutQuery);
-  writeNotNull('layout_options', instance.layoutOptions);
-  return val;
-}
+Map<String, dynamic> _$DirectusPresetToJson(DirectusPreset instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'bookmark': ?instance.bookmark,
+      'user': ?instance.user,
+      'role': ?instance.role,
+      'collection': ?instance.collection,
+      'search': ?instance.search,
+      'filters': ?instance.filters,
+      'layout': ?instance.layout,
+      'layout_query': ?instance.layoutQuery,
+      'layout_options': ?instance.layoutOptions,
+    };

@@ -8,7 +8,7 @@ part of 'directus_revision.dart';
 
 DirectusRevision _$DirectusRevisionFromJson(Map<String, dynamic> json) =>
     DirectusRevision(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       activity: json['activity'],
       collection: json['collection'] as String?,
       item: json['item'] as String?,
@@ -17,21 +17,13 @@ DirectusRevision _$DirectusRevisionFromJson(Map<String, dynamic> json) =>
       parent: json['parent'],
     );
 
-Map<String, dynamic> _$DirectusRevisionToJson(DirectusRevision instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  writeNotNull('activity', instance.activity);
-  writeNotNull('collection', instance.collection);
-  writeNotNull('item', instance.item);
-  writeNotNull('data', instance.data);
-  writeNotNull('delta', instance.delta);
-  writeNotNull('parent', instance.parent);
-  return val;
-}
+Map<String, dynamic> _$DirectusRevisionToJson(DirectusRevision instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'activity': ?instance.activity,
+      'collection': ?instance.collection,
+      'item': ?instance.item,
+      'data': ?instance.data,
+      'delta': ?instance.delta,
+      'parent': ?instance.parent,
+    };

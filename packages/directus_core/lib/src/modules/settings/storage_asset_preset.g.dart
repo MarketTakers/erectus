@@ -10,9 +10,9 @@ StorageAssetPreset _$StorageAssetPresetFromJson(Map<String, dynamic> json) =>
     StorageAssetPreset(
       fit: json['fit'] as String,
       key: json['key'] as String,
-      width: json['width'] as int,
-      height: json['height'] as int,
-      quality: json['quality'] as int,
+      width: (json['width'] as num).toInt(),
+      height: (json['height'] as num).toInt(),
+      quality: (json['quality'] as num).toInt(),
       withoutEnlargement: json['without_enlargement'] as bool,
     );
 

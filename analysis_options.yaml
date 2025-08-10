@@ -12,3 +12,7 @@ analyzer:
   exclude:
     - "example/**"
     - "**/*.g.dart"
+
+linter:
+  rules:
+    - use_null_aware_elements

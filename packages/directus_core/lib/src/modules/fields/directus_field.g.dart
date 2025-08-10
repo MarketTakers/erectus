@@ -8,7 +8,7 @@ part of 'directus_field.dart';
 
 DirectusField _$DirectusFieldFromJson(Map<String, dynamic> json) =>
     DirectusField(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       collection: json['collection'] as String?,
       field: json['field'] as String?,
       special: json['special'] as String?,
@@ -19,39 +19,31 @@ DirectusField _$DirectusFieldFromJson(Map<String, dynamic> json) =>
       lock: json['lock'] as bool?,
       readonly: json['readonly'] as bool?,
       hidden: json['hidden'] as bool?,
-      sort: json['sort'] as int?,
+      sort: (json['sort'] as num?)?.toInt(),
       width: json['width'] as String?,
-      group: json['group'] as int?,
+      group: (json['group'] as num?)?.toInt(),
       translations: (json['translations'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
       note: json['note'] as String?,
     );
 
-Map<String, dynamic> _$DirectusFieldToJson(DirectusField instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  writeNotNull('collection', instance.collection);
-  writeNotNull('field', instance.field);
-  writeNotNull('special', instance.special);
-  writeNotNull('interface', instance.interface);
-  writeNotNull('options', instance.options);
-  writeNotNull('display', instance.display);
-  writeNotNull('display_options', instance.displayOptions);
-  writeNotNull('lock', instance.lock);
-  writeNotNull('readonly', instance.readonly);
-  writeNotNull('hidden', instance.hidden);
-  writeNotNull('sort', instance.sort);
-  writeNotNull('width', instance.width);
-  writeNotNull('group', instance.group);
-  writeNotNull('translations', instance.translations);
-  writeNotNull('note', instance.note);
-  return val;
-}
+Map<String, dynamic> _$DirectusFieldToJson(DirectusField instance) =>
+    <String, dynamic>{
+      'id': ?instance.id,
+      'collection': ?instance.collection,
+      'field': ?instance.field,
+      'special': ?instance.special,
+      'interface': ?instance.interface,
+      'options': ?instance.options,
+      'display': ?instance.display,
+      'display_options': ?instance.displayOptions,
+      'lock': ?instance.lock,
+      'readonly': ?instance.readonly,
+      'hidden': ?instance.hidden,
+      'sort': ?instance.sort,
+      'width': ?instance.width,
+      'group': ?instance.group,
+      'translations': ?instance.translations,
+      'note': ?instance.note,
+    };
