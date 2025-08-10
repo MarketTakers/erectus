@@ -10,7 +10,7 @@ import 'package:directus_core/src/modules/auth/_static_token.dart';
 import 'package:directus_core/src/modules/auth/_tfa.dart';
 import 'package:meta/meta.dart';
 
-import '_auth_response.dart';
+import 'auth_response.dart';
 
 class AuthHandler with StaticToken {
   /// Http client

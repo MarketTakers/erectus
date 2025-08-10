@@ -38,7 +38,8 @@ class AuthResponse {
     // ignore: unnecessary_null_comparison
     if (response == null || response.data == null) {
       throw DirectusError(
-          message: 'Response and response data can\'t be null.');
+        message: 'Response and response data can\'t be null.',
+      );
     }
 
     final data = response.data?['data'];
