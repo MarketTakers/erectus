@@ -41,20 +41,16 @@ enum DirectusFieldType {
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-class DirectusField {
+class DirectusFieldMeta {
   int id;
-  DirectusFieldType type;
-
   bool required;
+  String collection;
 
-  String? collection;
-  String? field;
   String? special;
   String? interface;
   Map<String, Object?>? options;
   String? display;
   Map<String, Object?>? displayOptions;
-  bool? lock;
   bool? readonly;
   bool? hidden;
   int? sort;
@@ -63,20 +59,15 @@ class DirectusField {
   List<Map<String, Object?>>? translations;
   String? note;
 
-  DirectusField(
-  
-    {
+  DirectusFieldMeta({
     required this.id,
-    required this.type,
     required this.required,
-    this.collection,
-    this.field,
+    required this.collection,
     this.special,
     this.interface,
     this.options,
     this.display,
     this.displayOptions,
-    this.lock,
     this.readonly,
     this.hidden,
     this.sort,
@@ -86,10 +77,29 @@ class DirectusField {
     this.note,
   });
 
-  /// Used for code generation
+factory DirectusFieldMeta.fromJson(Map<String, Object?> json) =>
+      _$DirectusFieldMetaFromJson(json);
+
+  Map<String, Object?> toJson() => _$DirectusFieldMetaToJson(this);
+}
+
+@JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
+class DirectusField {
+  String field;
+  String collection;
+  DirectusFieldType type;
+
+  DirectusFieldMeta meta;
+
+  DirectusField({
+    required this.field,
+    required this.type,
+    required this.collection,
+    required this.meta,
+  });
+
   factory DirectusField.fromJson(Map<String, Object?> json) =>
       _$DirectusFieldFromJson(json);
 
-  /// Used for code generation
   Map<String, Object?> toJson() => _$DirectusFieldToJson(this);
 }

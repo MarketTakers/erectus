@@ -6,19 +6,16 @@ part of 'directus_field.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DirectusField _$DirectusFieldFromJson(Map<String, dynamic> json) =>
-    DirectusField(
+DirectusFieldMeta _$DirectusFieldMetaFromJson(Map<String, dynamic> json) =>
+    DirectusFieldMeta(
       id: (json['id'] as num).toInt(),
-      type: $enumDecode(_$DirectusFieldTypeEnumMap, json['type']),
       required: json['required'] as bool,
-      collection: json['collection'] as String?,
-      field: json['field'] as String?,
+      collection: json['collection'] as String,
       special: json['special'] as String?,
       interface: json['interface'] as String?,
       options: json['options'] as Map<String, dynamic>?,
       display: json['display'] as String?,
       displayOptions: json['display_options'] as Map<String, dynamic>?,
-      lock: json['lock'] as bool?,
       readonly: json['readonly'] as bool?,
       hidden: json['hidden'] as bool?,
       sort: (json['sort'] as num?)?.toInt(),
@@ -30,19 +27,16 @@ DirectusField _$DirectusFieldFromJson(Map<String, dynamic> json) =>
       note: json['note'] as String?,
     );
 
-Map<String, dynamic> _$DirectusFieldToJson(DirectusField instance) =>
+Map<String, dynamic> _$DirectusFieldMetaToJson(DirectusFieldMeta instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': _$DirectusFieldTypeEnumMap[instance.type]!,
       'required': instance.required,
-      'collection': ?instance.collection,
-      'field': ?instance.field,
+      'collection': instance.collection,
       'special': ?instance.special,
       'interface': ?instance.interface,
       'options': ?instance.options,
       'display': ?instance.display,
       'display_options': ?instance.displayOptions,
-      'lock': ?instance.lock,
       'readonly': ?instance.readonly,
       'hidden': ?instance.hidden,
       'sort': ?instance.sort,
@@ -50,6 +44,22 @@ Map<String, dynamic> _$DirectusFieldToJson(DirectusField instance) =>
       'group': ?instance.group,
       'translations': ?instance.translations,
       'note': ?instance.note,
+    };
+
+DirectusField _$DirectusFieldFromJson(Map<String, dynamic> json) =>
+    DirectusField(
+      field: json['field'] as String,
+      type: $enumDecode(_$DirectusFieldTypeEnumMap, json['type']),
+      collection: json['collection'] as String,
+      meta: DirectusFieldMeta.fromJson(json['meta'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$DirectusFieldToJson(DirectusField instance) =>
+    <String, dynamic>{
+      'field': instance.field,
+      'collection': instance.collection,
+      'type': _$DirectusFieldTypeEnumMap[instance.type]!,
+      'meta': instance.meta,
     };
 
 const _$DirectusFieldTypeEnumMap = {
