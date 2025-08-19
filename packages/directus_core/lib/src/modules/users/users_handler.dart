@@ -40,4 +40,13 @@ class UsersHandler extends ItemsHandler<DirectusUser> {
       throw DirectusError.fromDio(e);
     }
   }
+
+  Future<DirectusUser> me() async {
+    try {
+      final response = await client.get('users/me');
+      return converter.fromJson(response.data);
+    } catch (e) {
+      throw DirectusError.fromDio(e);
+    }
+  }
 }
