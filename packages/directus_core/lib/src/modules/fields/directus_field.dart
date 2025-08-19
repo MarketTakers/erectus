@@ -2,9 +2,51 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'directus_field.g.dart';
 
+@JsonEnum(fieldRename: FieldRename.snake)
+enum DirectusFieldType {
+  // Basic Data Types
+  string,
+  text,
+  integer,
+  bigInteger,
+  float,
+  decimal,
+  boolean,
+
+  // Date & Time Types
+  date,
+  time,
+  dateTime,
+  timestamp,
+
+  // Special Data Types
+  json,
+  csv,
+  uuid,
+  hash,
+  binary,
+
+  // Geospatial Types
+  geometry,
+  geometryPoint,
+  geometryLineString,
+  geometryPolygon,
+  geometryMultiPoint,
+  geometryMultiLineString,
+  geometryMultiPolygon,
+
+  // System/Virtual Types
+  alias,
+  unknown,
+}
+
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
 class DirectusField {
-  int? id;
+  int id;
+  DirectusFieldType type;
+
+  bool required;
+
   String? collection;
   String? field;
   String? special;
@@ -21,8 +63,12 @@ class DirectusField {
   List<Map<String, Object?>>? translations;
   String? note;
 
-  DirectusField({
-    this.id,
+  DirectusField(
+  
+    {
+    required this.id,
+    required this.type,
+    required this.required,
     this.collection,
     this.field,
     this.special,

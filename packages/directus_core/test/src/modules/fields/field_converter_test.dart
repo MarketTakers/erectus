@@ -5,7 +5,9 @@ import 'package:test/test.dart';
 void main() {
   test('FieldConverter', () {
     final converter = FieldConverter();
-    final fieldMap = converter.toJson(DirectusField(id: 1));
+    final fieldMap = converter.toJson(
+      DirectusField(id: 1, type: DirectusFieldType.boolean, required: false),
+    );
     expect(fieldMap, isMap);
     final field = converter.fromJson(fieldMap);
     expect(field, isA<DirectusField>());
