@@ -11,7 +11,7 @@ class FieldsHandler extends ItemsHandler<DirectusField> {
 
   Future<DirectusListResponse<DirectusField>> readCollectionFields(
     String collection,
-    String? sort,
+    {String? sort}
   ) async {
     return await DirectusListResponse.fromRequest(
       () => client.get('fields/$collection', queryParameters: {"sort": sort}),
