@@ -1,4 +1,5 @@
 import 'package:directus_core/src/modules/fields/directus_field.dart';
+import 'package:directus_core/src/modules/fields/directus_field_meta.dart';
 import 'package:directus_core/src/modules/fields/field_converter.dart';
 import 'package:test/test.dart';
 

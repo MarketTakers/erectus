@@ -13,11 +13,11 @@ dependencies:
   # Annotations
   meta: ^1.9.1
   # Used for decorators for JSON serialization
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   test: ^1.24.9
   mockito: ^5.4.3
-  json_serializable: ^6.7.1
+  json_serializable: ^6.10.0
   build_runner: ^2.4.6
   lints: ^3.0.0
