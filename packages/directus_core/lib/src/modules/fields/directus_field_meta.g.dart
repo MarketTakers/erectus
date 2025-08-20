@@ -11,7 +11,9 @@ DirectusFieldMeta _$DirectusFieldMetaFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       required: json['required'] as bool,
       collection: json['collection'] as String,
-      special: json['special'] as String?,
+      special: (json['special'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       interface: json['interface'] as String?,
       options: json['options'] as Map<String, dynamic>?,
       display: json['display'] as String?,

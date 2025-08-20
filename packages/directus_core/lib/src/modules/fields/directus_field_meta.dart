@@ -8,7 +8,7 @@ class DirectusFieldMeta {
   bool required;
   String collection;
 
-  String? special;
+  List<String>? special;
   String? interface;
   Map<String, Object?>? options;
   String? display;
