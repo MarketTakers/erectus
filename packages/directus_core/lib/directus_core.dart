@@ -19,6 +19,7 @@ export 'src/modules/folders/directus_folder.dart';
 export 'src/modules/items/items_converter.dart';
 export 'src/modules/items/items_handler.dart';
 export 'src/modules/permissions/directus_permission.dart';
+export 'src/modules/permissions/user_permissions.dart';
 export 'src/modules/presets/directus_preset.dart';
 export 'src/modules/relations/directus_relation.dart';
 export 'src/modules/revisions/directus_revision.dart';
