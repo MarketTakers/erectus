@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'directus_field.g.dart';
 
-@JsonEnum(fieldRename: FieldRename.snake)
+@JsonEnum()
 enum DirectusFieldType {
   // Basic Data Types
   string,
