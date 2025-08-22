@@ -14,6 +14,7 @@ export 'src/memory_storage.dart';
 export 'src/modules/activity/directus_activity.dart';
 export 'src/modules/collections/directus_collection.dart';
 export 'src/modules/fields/directus_field.dart';
+export 'src/modules/fields/directus_field_meta.dart';
 export 'src/modules/files/directus_file.dart';
 export 'src/modules/folders/directus_folder.dart';
 export 'src/modules/items/items_converter.dart';

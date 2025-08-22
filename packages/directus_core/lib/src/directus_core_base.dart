@@ -22,13 +22,15 @@ class DirectusCore {
   final String? key;
 
   /// Constructor with all provided services.
-  DirectusCore(String url,
-      {required DirectusStorage storage, Dio? client, this.key})
-      : _storage = storage,
-        client = client ??
-            Dio(
-              BaseOptions(baseUrl: url.endsWith('/') ? url : '$url/'),
-            ) {
+  DirectusCore(
+    String url, {
+    required DirectusStorage storage,
+    Dio? client,
+    this.key,
+  }) : _storage = storage,
+       client =
+           client ??
+           Dio(BaseOptions(baseUrl: url.endsWith('/') ? url : '$url/')) {
     // Check if SDK is inited before first request.
     _ensureSdkInitialized();
   }
@@ -41,12 +43,15 @@ class DirectusCore {
     final check = InterceptorsWrapper(
       onRequest: (options, handler) {
         if (!_isInitialized) {
-          return handler.reject(DioException(
+          return handler.reject(
+            DioException(
               type: DioExceptionType.unknown,
               requestOptions: options,
               error: DirectusError(
                 message: 'You must first call and await init method.',
-              )));
+              ),
+            ),
+          );
         }
         return handler.next(options);
       },
@@ -79,11 +84,14 @@ class DirectusCore {
   /// and from json. If you don't care about types, use [items],
   /// that will return [Map]. [converter] is a simple interface that converts value to
   /// and from JSON so it can be consumed with this API.
-  ItemsHandler<T> typedItems<T>(String collection,
-      {required ItemsConverter<T> converter}) {
+  ItemsHandler<T> typedItems<T>(
+    String collection, {
+    required ItemsConverter<T> converter,
+  }) {
     if (collection.startsWith('directus')) {
       throw DirectusError(
-          message: "You can't read $collection collection directly.");
+        message: "You can't read $collection collection directly.",
+      );
     }
     return ItemsHandler<T>(collection, client: client, converter: converter);
   }
@@ -97,15 +105,19 @@ class DirectusCore {
   }
 
   /// Auth
-  late final AuthHandler auth =
-      AuthHandler(client: client, storage: _storage, refreshClient: Dio());
+  late final AuthHandler auth = AuthHandler(
+    client: client,
+    storage: _storage,
+    refreshClient: Dio(),
+  );
 
   /// Activity
   late final ActivityHandler activity = ActivityHandler(client: client);
 
   /// Collections
-  late final CollectionsHandler collections =
-      CollectionsHandler(client: client);
+  late final CollectionsHandler collections = CollectionsHandler(
+    client: client,
+  );
 
   /// Fields
   late final FieldsHandler fields = FieldsHandler(client: client);
@@ -117,8 +129,9 @@ class DirectusCore {
   late final FoldersHandler folders = FoldersHandler(client: client);
 
   /// Permissions
-  late final PermissionsHandler permissions =
-      PermissionsHandler(client: client);
+  late final PermissionsHandler permissions = PermissionsHandler(
+    client: client,
+  );
 
   /// Presets
   late final PresetsHandler presets = PresetsHandler(client: client);
@@ -144,21 +157,12 @@ class DirectusCore {
   /// Utils
   late final UtilsHandler utils = UtilsHandler(client: client);
 
-  /// Use [client] instead. This is the same as client, only more descriptive name.
-  ///
-  /// HTTP client that can be used for accessing custom extensions.
-  @Deprecated('Use this.client instead')
-  Dio get custom => client;
-
   /// Execute GraphQL queries.
   ///
   /// [ItemsConverter] must be provided that will convert data to
   /// and from json. [converter] is a simple interface that converts value to
   /// and from JSON so it can be consumed with this API.
   GraphQLHandler<T> graphql<T>({ItemsConverter<T>? converter}) {
-    return GraphQLHandler<T>(
-      client: client,
-      converter: converter,
-    );
+    return GraphQLHandler<T>(client: client, converter: converter);
   }
 }
