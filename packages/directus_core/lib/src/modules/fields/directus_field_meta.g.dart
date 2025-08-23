@@ -8,7 +8,6 @@ part of 'directus_field_meta.dart';
 
 DirectusFieldMeta _$DirectusFieldMetaFromJson(Map<String, dynamic> json) =>
     DirectusFieldMeta(
-      id: (json['id'] as num).toInt(),
       required: json['required'] as bool,
       collection: json['collection'] as String,
       special: (json['special'] as List<dynamic>?)
@@ -31,7 +30,6 @@ DirectusFieldMeta _$DirectusFieldMetaFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$DirectusFieldMetaToJson(DirectusFieldMeta instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'required': instance.required,
       'collection': instance.collection,
       'special': ?instance.special,
