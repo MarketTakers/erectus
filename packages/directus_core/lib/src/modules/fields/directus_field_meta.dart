@@ -3,8 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'directus_field_meta.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, includeIfNull: false)
-@freezed
-class DirectusFieldMeta with _$DirectusFieldMeta {
+class DirectusFieldMeta {
   bool required;
   String collection;
 
